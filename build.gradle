@@ -73,5 +73,5 @@ dependencies {
     implementation "androidx.recyclerview:recyclerview:1.1.0"
 
     implementation 'androidx.cardview:cardview:1.0.0'
-
+    task wrapper(type: Wrapper) { gradleVersion = '2.14.1' }
 }

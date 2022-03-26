@@ -1,10 +1,12 @@
-package com.example.dofus
+package com.example.dofus.class_page
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dofus.API.Api
+import com.example.dofus.R
+import com.example.dofus.RecyclerAdapterMonster
 import com.example.dofus.`object`.monster
 import retrofit2.Call
 import retrofit2.Callback
@@ -28,11 +30,6 @@ class MonsterActivity : AppCompatActivity() {
         var minPM : Double = 0.0
         var maxPM : Double = 0.0
 
-        val extras = intent.extras
-        if (extras != null) {
-            typeSelect = extras.getString("type")
-        }
-
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerViewMonster)
 
@@ -44,11 +41,10 @@ class MonsterActivity : AppCompatActivity() {
         apiInterface.enqueue(object : Callback<List<monster>> {
             override fun onResponse(call: Call<List<monster>>, response: Response<List<monster>>) {
                 if (response.body() != null) {
-                    val allMonster = response.body()
-                    if (allMonster != null) {
-                        for (monstreType in allMonster){
-                            if(typeSelect == monstreType.type){
-                                val stats = monstreType.stat
+                    val Monsters = response.body()
+                    if (Monsters != null) {
+                        for (Monstre in Monsters){
+                                val stats = Monstre.stat
                                 for (stat in stats){
                                     val pv = stat.pv
                                     val pa = stat.pa
@@ -66,16 +62,14 @@ class MonsterActivity : AppCompatActivity() {
                                         maxPM = pm.max
                                     }
                                 }
-                                monster.add(monster("",monstreType.name,monstreType.imgUrl,
-                                    monstreType.stat, minHP, maxHP,minPA, maxPA,minPM,maxPM))
-                            }
+                                monster.add(monster("",Monstre.name,Monstre.imgUrl,Monstre.stat
+                                ,minHP,maxHP,minPA,maxPA,minPM,maxPM))
                         }
                     }
                     recyclerAdapter.setMonsters(monster)
                 }
             }
             override fun onFailure(call: Call<List<monster>>, t: Throwable) {
-                TODO("Not yet implemented")
             }
         })
     }

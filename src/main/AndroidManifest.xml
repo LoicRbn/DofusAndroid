@@ -13,10 +13,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Dofus">
         <activity
-            android:name=".type_monster_page"
+            android:name=".class_page.MonsterActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".class_page.monster_by_name"
+            android:exported="false" />
+        <activity
+            android:name=".class_page.monster_by_pv"
+            android:exported="false" />
+        <activity
+            android:name=".class_page.monster_by_pa"
+            android:exported="false" />
+        <activity
+            android:name=".class_page.monster_by_pm"
+            android:exported="false" />
+        <activity
+            android:name=".class_page.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
